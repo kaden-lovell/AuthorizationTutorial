@@ -25,7 +25,7 @@ namespace BloggerApi.Services {
     }
 
     public async Task<dynamic> LoginAsync(dynamic model) {
-      _logger.LogInformation($"LoginService:LoginAsync: {model.email} {model.password}");
+      _logger.LogDebug($"LoginService:LoginAsync: {model.email} {model.password}");
       var user = await _userRepository.GetUserByEmailAsync((string) model.email);
 
       // error handling

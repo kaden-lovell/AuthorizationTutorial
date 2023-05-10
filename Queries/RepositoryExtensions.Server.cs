@@ -11,7 +11,7 @@ namespace BloggerApi.Queries {
         await repository
           .AsQueryable()
           .OfType<Server>()
-          .FirstOrDefaultAsync();
+          .SingleOrDefaultAsync();
 
       return result;
     }
