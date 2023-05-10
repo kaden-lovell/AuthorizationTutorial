@@ -8,24 +8,21 @@ using BloggerApi.Queries;
 using BloggerApi.Utilities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
 namespace BloggerApi.Services {
   public class LoginService {
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IRepository<User> _userRepository;
     private readonly IRepository<Server> _serverRepository;
-    private readonly ILogger<LoginService> _logger;
 
-    public LoginService(IHttpContextAccessor httpContextAccessor, ILogger<LoginService> logger, IRepository<User> userRepository, IRepository<Server> serverRepository) {
+    public LoginService(IHttpContextAccessor httpContextAccessor, IRepository<User> userRepository, IRepository<Server> serverRepository) {
       _httpContextAccessor = httpContextAccessor;
-      _logger = logger;
       _userRepository = userRepository;
       _serverRepository = serverRepository;
     }
 
     public async Task<dynamic> LoginAsync(dynamic model) {
-      _logger.LogDebug($"LoginService:LoginAsync: {model.email} {model.password}");
+      //_logger.LogDebug($"LoginService:LoginAsync | {model.email} {model.password}");
       var user = await _userRepository.GetUserByEmailAsync((string) model.email);
 
       // error handling
